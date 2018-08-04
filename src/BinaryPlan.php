@@ -11,6 +11,8 @@
 
 namespace Malfasih\Slim;
 
+use Illuminate\Database\Eloquent\Model as DB;
+
 class BinaryPlan {
 
 	/**
@@ -27,9 +29,13 @@ class BinaryPlan {
 	 * @return sql
 	 */
 
-	public function getUsername($user_key)
+	public function getUsername($user_key, $table_name)
 	{
+		$DB = DB::table($table_name)
+				->where('user_key', $user_key)
+				->first();
 
+		return $DB;
 	}
 
 	/**
@@ -64,6 +70,29 @@ class BinaryPlan {
 	{
 
 	}
+
+	/**
+	 * Get count of left leg users by username
+	 *
+	 * @return int
+	 */
+
+	public function getCountLeftUser($username)
+	{
+
+	}
+
+	/**
+	 * Get count of right leg users by username
+	 *
+	 * @return int
+	 */
+
+	public function getCountRightUser($username)
+	{
+
+	}
+
 
 }
 
